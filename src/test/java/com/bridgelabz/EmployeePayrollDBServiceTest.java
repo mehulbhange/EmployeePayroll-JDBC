@@ -34,4 +34,20 @@ public class EmployeePayrollDBServiceTest {
         Assertions.assertEquals(3000000.00,salary);
     }
 
+    @Test
+    public void givenNewSalaryForEmployeeUsingPreparedStatement_WhenUpdated_ShouldSyncWithDB() {
+
+        employeePayrollDBService.updateEmployeeDataUsingPreparedStatement("Terissa",3000000.00);
+        List<EmployeePayroll> retrivedEmpList = employeePayrollDBService.readData();
+        double salary = 0;
+        for (EmployeePayroll employee : retrivedEmpList){
+            if (employee.getName().equals("Terissa")){
+                salary = employee.getSalary();
+                break;
+            }
+        }
+
+        Assertions.assertEquals(3000000.00,salary);
+    }
+
 }

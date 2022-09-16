@@ -62,4 +62,17 @@ public class EmployeePayrollDBService {
         return 0;
     }
 
+    public int updateEmployeeDataUsingPreparedStatement(String name, double salary){
+        String sql = "update employee_payroll_data set salary = ? where name = ?;";
+        try(Connection connection = this.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setDouble(1, salary);
+            statement.setString(2,name);
+            return statement.executeUpdate();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
 }
