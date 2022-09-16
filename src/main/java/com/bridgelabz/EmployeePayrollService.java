@@ -28,7 +28,6 @@ public class EmployeePayrollService {
         }catch (Exception ex){
             System.out.println(ex);
         }
-
     }
     private static void listDrivers(){
         Enumeration<Driver> driverList = DriverManager.getDrivers();
